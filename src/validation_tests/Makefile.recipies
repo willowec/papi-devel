@@ -38,6 +38,9 @@ instructions_testcode.o:	instructions_testcode.c testcode.h
 matrix_multiply.o:	matrix_multiply.c matrix_multiply.h
 	$(CC) $(INCLUDE) $(CFLAGS) $(OPTFLAGS) -c matrix_multiply.c
 
+load_store_testcode.o:	load_store_testcode.c testcode.h
+	$(CC) $(INCLUDE) $(CFLAGS) $(OPTFLAGS) -c load_store_testcode.c
+
 fp_validation_hl: fp_validation_hl.o $(TESTLIB) $(PAPILIB) flops_testcode.o
 	$(CC) -o fp_validation_hl fp_validation_hl.o $(TESTLIB) flops_testcode.o $(PAPILIB) $(LDFLAGS) $(EXTRALIB) -lpthread
 
@@ -108,8 +111,8 @@ papi_ref_cyc: papi_ref_cyc.o $(TESTLIB) $(PAPILIB) display_error.o flops_testcod
 papi_sp_ops: papi_sp_ops.o $(TESTLIB) $(PAPILIB) display_error.o branches_testcode.o flops_testcode.o
 	$(CC) -o papi_sp_ops papi_sp_ops.o $(TESTLIB) display_error.o branches_testcode.o flops_testcode.o $(PAPILIB) $(LDFLAGS) $(EXTRALIB)
 
-papi_sr_ins: papi_sr_ins.o $(TESTLIB) $(PAPILIB) display_error.o matrix_multiply.o
-	$(CC) -o papi_sr_ins papi_sr_ins.o $(TESTLIB) display_error.o matrix_multiply.o $(PAPILIB) $(LDFLAGS) $(EXTRALIB)
+papi_sr_ins: papi_sr_ins.o $(TESTLIB) $(PAPILIB) display_error.o matrix_multiply.o load_store_testcode.o
+	$(CC) -o papi_sr_ins papi_sr_ins.o $(TESTLIB) display_error.o matrix_multiply.o load_store_testcode.o $(PAPILIB) $(LDFLAGS) $(EXTRALIB)
 
 papi_tot_cyc: papi_tot_cyc.o $(TESTLIB) $(PAPILIB) display_error.o matrix_multiply.o
 	$(CC) -o papi_tot_cyc papi_tot_cyc.o $(TESTLIB) display_error.o matrix_multiply.o $(PAPILIB) $(LDFLAGS) $(EXTRALIB)

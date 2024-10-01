@@ -27,5 +27,8 @@ double cache_read_test(double *array, int size);
 int cache_random_write_test(double *array, int size, int count);
 double cache_random_read_test(double *array, int size, int count);
 
+/* load_store_testcode.c */
+int execute_stores();
+
 /* busy_work.c */
 double do_cycles( int minimum_time );
